@@ -47,18 +47,19 @@
   <!-- 3.2 Who -->
   <section class="who" aria-labelledby="who-h">
     <h2 id="who-h" class="section-label">Who</h2>
-    <!-- VERIFY — Michael: confirm the 21K description + dates read the way you
-         want them public. Swap the 6am line for a truer memory if you have one. -->
+    <!-- 21K wording CONFIRMED by Michael 2026-07-13: full-service senior
+         caregiving company, past tense. Swap the 6am line for a real 21K memory
+         if Michael has a more specific one. -->
     <div class="who__body">
       <p>
-        I'm Michael Drayton. I'm the former owner of 21K Home Care, a senior
-        caregiving company — so I know what 6am looks like when someone calls
-        off and three families are expecting a caregiver at 8.
+        I'm Michael Drayton. I'm the former owner of 21K Home Care, a
+        full-service senior caregiving company — so I know what 6am looks like
+        when someone calls off and three families are expecting a caregiver at 8.
       </p>
       <p>
-        Now I build the software for that problem. I run two SaaS platforms of
-        my own, and I take on outside builds when the work is the kind I've
-        already done.
+        Now I build the software for that problem. I run a SaaS platform of my
+        own with paying customers, and I take on outside builds when the work is
+        the kind I've already done.
       </p>
     </div>
   </section>
@@ -85,13 +86,13 @@
       </li>
 
       <!-- Card 2 — Housing Inspect Hub -->
-      <!-- VERIFY — Michael must confirm status wording. Do NOT claim customers or
-           "live" unless true. Defaulted to IN BUILD as the safe, honest floor —
-           an overclaim here poisons the whole page. -->
+      <!-- Status CONFIRMED by Michael 2026-07-13: "IN DEVELOPMENT" — those exact
+           words. No "launching soon" / customer / traction language. A truthful
+           IN DEVELOPMENT next to a LIVE card is what makes the LIVE card believable. -->
       <li class="card">
         <div class="card__ticket">
           <span class="card__id">JOB-02</span>
-          <span class="pill">IN BUILD</span>
+          <span class="pill">IN DEVELOPMENT</span>
         </div>
         <h3 class="card__title">Housing Inspect Hub</h3>
         <p class="card__scope">
@@ -100,8 +101,10 @@
       </li>
 
       <!-- Card 3 — California maintenance company dispatcher app -->
-      <!-- VERIFY — Michael: can the client be named, or does it stay anonymous?
-           Defaulted to anonymous. -->
+      <!-- VERIFY — Michael: is this Ricky Carson (the Google reviewer below,
+           "customizing his facilities management app")? If YES, name him here and
+           cross-link this card to his review — he named himself publicly. If not
+           confirmed, it STAYS anonymous. Not guessing. -->
       <li class="card">
         <div class="card__ticket">
           <span class="card__id">JOB-03</span>
@@ -116,22 +119,58 @@
     </ol>
   </section>
 
-  <!-- 3.4 The proof — Isiaha's Capterra review -->
+  <!-- 3.4 The proof — two public Google Business Profile reviews of GoCrewIt.
+       (Capterra route deleted: badges gate at 10 reviews; FIH has one. These are
+       better proof — right brand, named public profiles, no gate.) -->
   <section class="proof" aria-labelledby="proof-h">
     <h2 id="proof-h" class="section-label">The proof</h2>
     <p class="proof__context">
-      A fire protection contractor who pays for Fire Inspect Hub rated it 10/10,
-      by name, on Capterra — a verifiable stranger, not a quote I typed.
+      Two public five-star Google reviews of GoCrewIt — named people, real
+      profiles, from about ten months ago. Check them yourself.
     </p>
-    <!-- ============================================================= -->
-    <!-- CAPTERRA BADGE — embed the official widget here.               -->
-    <!-- Pull the current embed from Capterra's vendor portal. Do NOT   -->
-    <!-- hand-roll a quote and do NOT reproduce the full review body.   -->
-    <!-- The badge must link back to the verifiable original review.    -->
-    <!-- ============================================================= -->
-    <div class="proof__badge" role="note" aria-label="Capterra rating badge placeholder">
-      <span class="proof__badge-label">CAPTERRA</span>
-      <span class="proof__badge-note">Official rating badge embeds here (10/10, verified).</span>
+
+    <div class="reviews">
+
+      <!-- Review 1 — Mekia Cherone (crew-side) — MOST SPACE. She stated the whole
+           positioning unprompted, ten months before the brief. -->
+      <blockquote class="review review--lead">
+        <div class="review__meta">
+          <span class="review__stars" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="review__src">Google &middot; ~10 months ago</span>
+        </div>
+        <!-- Summary, not a fabricated verbatim quote (we don't hold her exact text).
+             VERIFY — Michael: paste her verbatim excerpt if you want it in quotes;
+             if she wrote "paperwork," keep it — that's HER voice, allowed. -->
+        <p class="review__body">
+          A crew-side user: the app made the work easier, ended the chasing of
+          signatures and the back-and-forth with customers over whether a job was
+          actually finished, and let her prove what got done straight from her phone.
+        </p>
+        <footer class="review__who">
+          <cite>Mekia Cherone</cite>
+          <!-- VERIFY — Michael: supply the live Google Business Profile URL. -->
+          <a class="review__link" href="#VERIFY-gmb-url">Read on Google &rarr;</a>
+        </footer>
+      </blockquote>
+
+      <!-- Review 2 — Ricky Carson — the Local Guide standing is the point. -->
+      <blockquote class="review">
+        <div class="review__meta">
+          <span class="review__stars" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="review__src">Google &middot; ~10 months ago</span>
+        </div>
+        <p class="review__body">
+          100% satisfied &mdash; available, and did the work. The engagement:
+          customizing his facilities management app.
+        </p>
+        <footer class="review__who">
+          <cite>Ricky Carson</cite>
+          <span class="review__badge">Local Guide &middot; 32 reviews</span>
+          <!-- VERIFY — Michael: supply the live Google Business Profile URL. -->
+          <a class="review__link" href="#VERIFY-gmb-url">Read on Google &rarr;</a>
+        </footer>
+      </blockquote>
+
     </div>
   </section>
 
@@ -186,8 +225,9 @@
 <footer class="site-foot" role="contentinfo">
   <span>&copy; 2026 GoCrewIt · Chicago, IL</span>
   <nav class="site-foot__nav" aria-label="Legal">
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="terms-of-service.html">Terms</a>
+    <a href="support.html">Support</a>
   </nav>
 </footer>
 

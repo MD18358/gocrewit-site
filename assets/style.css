@@ -190,25 +190,42 @@ section:last-of-type { border-bottom: 0; }
   .board { grid-template-columns: repeat(3, 1fr); align-items: start; }
 }
 
-/* ---- Proof / Capterra slot ------------------------------------ */
-.proof__context { max-width: var(--measure); font-size: 1.15rem; margin: 0 0 1.75rem; }
-.proof__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.9rem;
+/* ---- Proof / Google reviews ----------------------------------- */
+.proof__context { max-width: var(--measure); font-size: 1.15rem; margin: 0 0 2rem; }
+.reviews { display: grid; gap: 1.25rem; }
+.review {
+  margin: 0;
   background: var(--card);
-  border: 1px dashed var(--line-strong);
-  padding: 1rem 1.25rem;
-  font-family: var(--mono);
-  font-size: 0.8rem;
-}
-.proof__badge-label {
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  padding: 0.2rem 0.5rem;
   border: 1px solid var(--line-strong);
+  padding: 1.4rem 1.5rem 1.3rem;
 }
-.proof__badge-note { color: var(--muted); }
+/* Lead review gets weight via an ink rule — accent stays status-only. */
+.review--lead { border-left: 3px solid var(--ink); }
+.review__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.9rem;
+}
+.review__stars { color: var(--ink); letter-spacing: 0.12em; font-size: 0.85rem; }
+.review__src { color: var(--muted); }
+.review__body { margin: 0 0 1.1rem; max-width: 62ch; }
+.review--lead .review__body { font-size: 1.2rem; }
+.review__who {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
+.review__who cite { font-style: normal; font-weight: 600; color: var(--ink); }
+.review__badge { color: var(--muted); }
+.review__link { margin-left: auto; font-weight: 600; white-space: nowrap; }
 
 /* ---- Hire list ------------------------------------------------ */
 .hire__list {
