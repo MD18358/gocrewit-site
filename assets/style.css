@@ -1,26 +1,43 @@
 /* =================================================================
    GoCrewIt — credibility page
-   Design: "ops board / work-order ticket". Manila board + graphite ink,
-   ONE accent (signal green) reserved strictly for status. System fonts
-   only (no web-font fetch → fast on bad signal). Hand-written, no build.
+   Design: "ops board / work-order ticket," now built on the Fire
+   Inspect Hub design language (siblings, not clones — GoCrewIt's pitch
+   is "I build these platforms," so the family resemblance is proof).
+
+   Adopted from FIH: Barlow / Barlow Condensed type scale, the
+   dark-band section rhythm, dark stat cards, the inline CTA panel.
+   Kept GoCrewIt's own: dispatch-board concept + job cards, the mono
+   utility face for statuses/dates/IDs, and GREEN where FIH uses red —
+   warm graphite dark blocks (#211f1a) against FIH's cool charcoal.
    ================================================================= */
 
 :root {
   --board:      #e9e5db;  /* page: kraft / work-order manila            */
   --card:       #fbfaf6;  /* card stock                                 */
-  --ink:        #211f1a;  /* warm graphite (not pure black)             */
+  --ink:        #211f1a;  /* warm graphite — dark blocks + body ink     */
+  --ink-2:      #2c2a23;  /* slightly lifted dark (card-on-dark)        */
   --muted:      #6e695e;  /* secondary text                             */
   --line:       #d3cdbf;  /* hairline ticket structure                  */
   --line-strong:#bdb6a4;
-  --accent:     #1c7c4a;  /* signal green — STATUS ONLY                 */
-  --accent-dk:  #0e4429;
 
-  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --accent:     #1c7c4a;  /* signal green — links, on-light CTAs        */
+  --accent-dk:  #0e4429;  /* deep green — hover                         */
+  --signal:     #2ea567;  /* brighter green — accents ON dark blocks    */
+  --star:       #d99f2b;  /* review stars (semantic, not a brand color) */
+
+  --on-dark:    #f4f1e9;  /* text on dark blocks                        */
+  --on-dark-dim:#b4ae9f;  /* dim text on dark blocks                    */
+
+  --sans: 'Barlow', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --display: 'Barlow Condensed', 'Barlow', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, "SF Mono", "Cascadia Code", "Cascadia Mono", Menlo, Consolas, monospace;
 
   --measure: 62ch;
   --pad: clamp(1.25rem, 4vw, 3rem);
-  --gap: clamp(2.75rem, 7vw, 5.5rem);
+  --gap: clamp(3rem, 7vw, 5.5rem);
+  --wrap: 72rem;
+  --r: 8px;
+  --r-lg: 12px;
 }
 
 * { box-sizing: border-box; }
@@ -33,7 +50,7 @@ body {
   color: var(--ink);
   font-family: var(--sans);
   font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -46,6 +63,9 @@ a:hover { color: var(--accent); }
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+/* Shared inner column — matches board-bar / main / footer width. */
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--pad); }
 
 /* ---- Dispatch-board header bar -------------------------------- */
 .board-bar {
@@ -71,12 +91,14 @@ a:hover { color: var(--accent); }
 
 /* ---- Layout rhythm -------------------------------------------- */
 main {
-  max-width: 72rem;
+  max-width: var(--wrap);
   margin: 0 auto;
   padding: 0 var(--pad);
 }
-section { padding: var(--gap) 0; border-bottom: 1px solid var(--line); }
-section:last-of-type { border-bottom: 0; }
+/* Section separators echo FIH's h2 top-rule: a clean hairline break,
+   not a heavy box. Weights are differentiated per section below. */
+main > section { padding: var(--gap) 0; border-bottom: 1px solid var(--line); }
+main > section:last-of-type { border-bottom: 0; }
 
 .section-label {
   font-family: var(--mono);
@@ -86,51 +108,112 @@ section:last-of-type { border-bottom: 0; }
   text-transform: uppercase;
   color: var(--muted);
   margin: 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+/* Green tick on each section label — quiet accent, ties sections together. */
+.section-label::before {
+  content: "";
+  width: 1.5rem;
+  height: 2px;
+  background: var(--accent);
+  display: inline-block;
 }
 
-/* ---- Hero ------------------------------------------------------ */
-.hero { padding-top: clamp(3rem, 8vw, 6rem); }
+/* ================================================================
+   HERO — full-bleed dark band, the dominant object on the page.
+   Mirrors FIH's charcoal hero + accent bottom rule, in GoCrewIt ink.
+   ================================================================ */
+.hero {
+  background: var(--ink);
+  color: var(--on-dark);
+  border-bottom: 4px solid var(--signal);
+  padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(3rem, 7vw, 5rem);
+}
+.hero__inner { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--pad); }
 .hero__eyebrow {
+  display: inline-block;
   font-family: var(--mono);
   font-weight: 600;
-  letter-spacing: 0.02em;
-  font-size: clamp(1.1rem, 1rem + 1vw, 1.6rem);
-  margin: 0 0 1.25rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin: 0 0 1.4rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid rgba(46,165,103,0.5);
+  border-radius: 3px;
 }
 .hero__thesis {
-  font-size: clamp(2.4rem, 1.6rem + 5vw, 5rem);
-  line-height: 1.02;
-  letter-spacing: -0.02em;
+  font-family: var(--display);
+  font-size: clamp(2.8rem, 1.8rem + 6vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.005em;
   font-weight: 800;
   margin: 0 0 1.5rem;
-  max-width: 18ch;
+  max-width: 16ch;
+  color: #fff;
 }
 .hero__sub {
-  font-size: clamp(1.1rem, 1rem + 0.7vw, 1.4rem);
-  color: var(--ink);
+  font-size: clamp(1.15rem, 1rem + 0.7vw, 1.45rem);
+  color: var(--on-dark);
   max-width: var(--measure);
-  margin: 0 0 2.25rem;
+  margin: 0 0 2.4rem;
+  line-height: 1.55;
 }
 .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
-.hero__loc { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); letter-spacing: 0.04em; }
+.hero__loc { font-family: var(--mono); font-size: 0.8rem; color: var(--on-dark-dim); letter-spacing: 0.04em; }
+
+/* ================================================================
+   STATS — dark cards on manila, the credibility punch under the hero.
+   True numbers only. Number = condensed 800 in signal green.
+   ================================================================ */
+.stats { padding: clamp(2.5rem, 6vw, 4rem) 0 !important; }
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.stat {
+  background: var(--ink);
+  border-radius: var(--r);
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+}
+.stat__num {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 2rem + 2.5vw, 3.4rem);
+  line-height: 1;
+  color: var(--signal);
+  margin: 0 0 0.5rem;
+}
+.stat__label {
+  font-size: 0.95rem;
+  color: var(--on-dark-dim);
+  line-height: 1.4;
+  margin: 0;
+}
 
 /* ---- Button --------------------------------------------------- */
 .btn {
   display: inline-block;
-  background: var(--ink);
-  color: var(--card);
+  background: var(--accent);
+  color: #fff;
   font-weight: 600;
   font-size: 1rem;
-  padding: 0.8rem 1.6rem;
-  border: 1px solid var(--ink);
+  padding: 0.85rem 1.7rem;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
   text-decoration: none;
-  transition: transform 120ms ease, background-color 120ms ease;
+  transition: transform 120ms ease, background-color 120ms ease, border-color 120ms ease;
 }
 .btn:hover { background: var(--accent-dk); border-color: var(--accent-dk); color: #fff; transform: translateY(-1px); }
 
 /* ---- Who / How / prose ---------------------------------------- */
 .who__body, .how__body { max-width: var(--measure); }
-.who__body p, .how__body p { margin: 0 0 1.15rem; font-size: 1.15rem; }
+.who__body p, .how__body p { margin: 0 0 1.15rem; font-size: 1.18rem; line-height: 1.7; }
 .who__body p:last-child, .how__body p:last-child { margin-bottom: 0; }
 
 /* ---- The board: job cards ------------------------------------- */
@@ -144,10 +227,11 @@ section:last-of-type { border-bottom: 0; }
 .card {
   background: var(--card);
   border: 1px solid var(--line-strong);
-  padding: 1.4rem 1.5rem 1.6rem;
+  border-radius: var(--r);
+  padding: 1.5rem 1.5rem 1.7rem;
   transition: transform 120ms ease, box-shadow 120ms ease;
 }
-.card:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(33,31,26,0.09); }
+.card:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(33,31,26,0.10); }
 /* The one live card gets a structural marker, not a color wash. */
 .card--live { border-left: 3px solid var(--accent); }
 
@@ -172,17 +256,18 @@ section:last-of-type { border-bottom: 0; }
   letter-spacing: 0.07em;
   padding: 0.2rem 0.55rem;
   border: 1px solid var(--line-strong);
+  border-radius: 3px;
   color: var(--muted);
   white-space: nowrap;
 }
-/* Accent appears ONLY here, on the genuinely-live status. */
+/* Accent fill appears on the genuinely-live status. */
 .pill--live {
   background: var(--accent);
   border-color: var(--accent);
   color: #fff;
 }
 
-.card__title { font-size: 1.35rem; letter-spacing: -0.01em; margin: 0 0 0.6rem; }
+.card__title { font-family: var(--display); font-weight: 700; font-size: 1.5rem; letter-spacing: 0; margin: 0 0 0.6rem; }
 .card__scope { margin: 0 0 0.9rem; color: var(--ink); max-width: 60ch; }
 .card__link { font-family: var(--mono); font-size: 0.82rem; font-weight: 600; }
 
@@ -190,42 +275,59 @@ section:last-of-type { border-bottom: 0; }
   .board { grid-template-columns: repeat(3, 1fr); align-items: start; }
 }
 
-/* ---- Proof / Google reviews ----------------------------------- */
-.proof__context { max-width: var(--measure); font-size: 1.15rem; margin: 0 0 2rem; }
-.reviews { display: grid; gap: 1.25rem; }
+/* ================================================================
+   PROOF / reviews — the most important object on the page.
+   Elevated testimonial cards with real presence; the lead review
+   dominates. Gold stars (semantic), display-face names.
+   ================================================================ */
+.proof__context { max-width: var(--measure); font-size: 1.18rem; margin: 0 0 2.25rem; }
+.reviews { display: grid; gap: 1.5rem; }
 .review {
   margin: 0;
   background: var(--card);
   border: 1px solid var(--line-strong);
-  padding: 1.4rem 1.5rem 1.3rem;
+  border-radius: var(--r-lg);
+  padding: 1.9rem 2rem 1.7rem;
+  box-shadow: 0 6px 24px rgba(33,31,26,0.06);
 }
-/* Lead review gets weight via an ink rule — accent stays status-only. */
-.review--lead { border-left: 3px solid var(--ink); }
+/* Lead review dominates: green top bar, larger quote. */
+.review--lead {
+  border-top: 4px solid var(--accent);
+}
 .review__meta {
   display: flex;
   align-items: center;
   gap: 0.6rem 1rem;
   flex-wrap: wrap;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.9rem;
+  margin-bottom: 1.1rem;
 }
-.review__stars { color: var(--ink); letter-spacing: 0.12em; font-size: 0.85rem; }
-.review__src { color: var(--muted); }
-.review__body { margin: 0 0 1.1rem; max-width: 62ch; }
-.review--lead .review__body { font-size: 1.2rem; }
+.review__stars { color: var(--star); letter-spacing: 0.14em; font-size: 1.15rem; line-height: 1; }
+.review__src { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--muted); }
+.review__body { margin: 0 0 1.3rem; max-width: 62ch; font-size: 1.2rem; line-height: 1.55; color: var(--ink); }
+.review--lead .review__body {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.05rem);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+}
 .review__who {
   display: flex;
   align-items: baseline;
   gap: 0.4rem 1rem;
   flex-wrap: wrap;
-  font-family: var(--mono);
-  font-size: 0.78rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
 }
-.review__who cite { font-style: normal; font-weight: 600; color: var(--ink); }
-.review__badge { color: var(--muted); }
-.review__link { margin-left: auto; font-weight: 600; white-space: nowrap; }
+.review__who cite { font-family: var(--display); font-style: normal; font-weight: 700; font-size: 1.15rem; color: var(--ink); }
+.review__badge { font-family: var(--mono); font-size: 0.74rem; color: var(--muted); }
+.review__link { font-family: var(--mono); font-size: 0.78rem; margin-left: auto; font-weight: 600; white-space: nowrap; }
+
+@media (min-width: 52rem) {
+  .reviews { grid-template-columns: 1.4fr 1fr; align-items: start; }
+  /* Lead review takes the full top row for dominance. */
+  .review--lead { grid-column: 1 / -1; }
+}
 
 /* ---- Hire list ------------------------------------------------ */
 .hire__list {
@@ -239,7 +341,7 @@ section:last-of-type { border-bottom: 0; }
 .hire__list li {
   padding-left: 1.4rem;
   position: relative;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
 }
 .hire__list li::before {
   content: "›";
@@ -248,6 +350,31 @@ section:last-of-type { border-bottom: 0; }
   color: var(--accent);
   font-family: var(--mono);
   font-weight: 700;
+}
+
+/* ================================================================
+   CTA PANEL — inline dark block, FIH's mid-page conversion object.
+   Sits between the prose sections and contact.
+   ================================================================ */
+.cta-panel__box {
+  background: var(--ink);
+  border-radius: var(--r-lg);
+  padding: clamp(2.25rem, 5vw, 3.5rem);
+  text-align: center;
+}
+.cta-panel__box h2 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.7rem, 1.3rem + 2vw, 2.5rem);
+  line-height: 1.05;
+  color: #fff;
+  margin: 0 0 0.75rem;
+}
+.cta-panel__box p {
+  color: var(--on-dark-dim);
+  font-size: 1.1rem;
+  max-width: 46ch;
+  margin: 0 auto 1.75rem;
 }
 
 /* ---- Contact -------------------------------------------------- */
@@ -273,7 +400,7 @@ section:last-of-type { border-bottom: 0; }
 
 /* ---- Footer --------------------------------------------------- */
 .site-foot {
-  max-width: 72rem;
+  max-width: var(--wrap);
   margin: 0 auto;
   padding: 2rem var(--pad) 3rem;
   display: flex;
@@ -288,15 +415,15 @@ section:last-of-type { border-bottom: 0; }
 }
 .site-foot__nav { display: flex; gap: 1.25rem; }
 
-/* ---- Legal pages (privacy / terms / 404) ---------------------- */
+/* ---- Legal pages (privacy / terms / support / 404) ------------ */
 .doc {
   max-width: 46rem;
   margin: 0 auto;
   padding: clamp(2.5rem, 6vw, 4.5rem) var(--pad) 4rem;
 }
-.doc h1 { font-size: clamp(1.8rem, 1.4rem + 2vw, 2.6rem); letter-spacing: -0.02em; margin: 0 0 0.5rem; }
+.doc h1 { font-family: var(--display); font-weight: 800; font-size: clamp(1.9rem, 1.4rem + 2vw, 2.8rem); letter-spacing: 0; margin: 0 0 0.5rem; }
 .doc .doc__meta { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); margin: 0 0 2.5rem; }
-.doc h2 { font-size: 1.25rem; margin: 2.5rem 0 0.75rem; }
+.doc h2 { font-family: var(--display); font-weight: 700; font-size: 1.4rem; margin: 2.5rem 0 0.75rem; }
 .doc p, .doc li { max-width: var(--measure); }
 .doc a.back { font-family: var(--mono); font-size: 0.8rem; }
 .doc__placeholder {

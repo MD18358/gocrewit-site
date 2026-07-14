@@ -15,6 +15,9 @@
 <meta property="og:url" content="https://gocrewit.com/">
 <meta name="twitter:card" content="summary">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -28,10 +31,9 @@
   <span class="board-bar__meta board-bar__meta--dim">3 projects on file</span>
 </header>
 
-<main id="main">
-
-  <!-- 3.1 Hero — the thesis -->
-  <section class="hero" aria-labelledby="wordmark">
+<!-- 3.1 Hero — the thesis. Full-bleed dark band: the dominant object. -->
+<section class="hero" aria-labelledby="wordmark">
+  <div class="hero__inner">
     <p class="hero__eyebrow">GoCrewIt</p>
     <h1 id="wordmark" class="hero__thesis">Software for crews in the field.</h1>
     <p class="hero__sub">
@@ -41,6 +43,28 @@
     <div class="hero__actions">
       <a class="btn" href="https://calendar.app.google/ySt95BwqT4u9FVzF8">Book a call</a>
       <span class="hero__loc">Chicago, IL</span>
+    </div>
+  </div>
+</section>
+
+<main id="main">
+
+  <!-- 3.1b Track record — true numbers only. Dark stat cards, the
+       credibility punch directly under the hero. -->
+  <section class="stats" aria-label="Track record">
+    <div class="stats__grid">
+      <div class="stat">
+        <p class="stat__num">1</p>
+        <p class="stat__label">live SaaS platform, paying customers</p>
+      </div>
+      <div class="stat">
+        <p class="stat__num">3</p>
+        <p class="stat__label">client projects on file</p>
+      </div>
+      <div class="stat">
+        <p class="stat__num">2</p>
+        <p class="stat__label">public five-star reviews</p>
+      </div>
     </div>
   </section>
 
@@ -188,6 +212,15 @@
     <div class="how__body">
       <p>You talk to the person writing the code. No account manager, no handoff.</p>
       <p>And if I'm not the right fit for what you need, I'll tell you that instead of taking the contract.</p>
+    </div>
+  </section>
+
+  <!-- 3.6b Inline CTA panel — FIH's mid-page conversion object, in ink. -->
+  <section class="cta-panel" aria-label="Book a call">
+    <div class="cta-panel__box">
+      <h2>Ready when you are.</h2>
+      <p>Book a call and tell me what your crew needs.</p>
+      <a class="btn" href="https://calendar.app.google/ySt95BwqT4u9FVzF8">Book a call</a>
     </div>
   </section>
 
