@@ -42,7 +42,13 @@
 
 * { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Belt-and-suspenders: no element can ever induce horizontal scroll on a
+     phone, whatever the font-load state or device metrics. */
+  overflow-x: hidden;
+}
 
 body {
   margin: 0;
@@ -52,6 +58,11 @@ body {
   font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  /* Long unbreakable strings (emails, URLs, mono IDs/dates) break rather than
+     run off the right edge — inherited by all descendants. */
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 a { color: var(--accent-dk); text-decoration-thickness: 1px; text-underline-offset: 2px; }
@@ -147,8 +158,11 @@ main > section:last-of-type { border-bottom: 0; }
 }
 .hero__thesis {
   font-family: var(--display);
-  font-size: clamp(2.8rem, 1.8rem + 6vw, 5.5rem);
-  line-height: 0.98;
+  /* Min lowered so the WIDE fallback face (system-ui, pre-swap or if Google
+     Fonts is blocked on a phone) still fits at 320px — the min is what renders
+     on a phone, so it must clear the narrowest device. */
+  font-size: clamp(2.35rem, 1.4rem + 5.4vw, 5.5rem);
+  line-height: 1.0;
   letter-spacing: -0.005em;
   font-weight: 800;
   margin: 0 0 1.5rem;
